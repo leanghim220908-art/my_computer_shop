@@ -1,0 +1,309 @@
+@font-face {
+  font-family: "Bayon";
+  src: url(../fonts/Bayon/Bayon-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Battambang";
+  src: url("../fonts/Battambang/Battambang-Regular.ttf");
+}
+
+@font-face {
+  font-family: "RobotoRegular";
+  src: url("../fonts/Roboto/static/Roboto-Regular.ttf");
+}
+
+@font-face {
+  font-family: "RobotoBold";
+  src: url("../fonts/Roboto/static/Roboto-Bold.ttf");
+}
+
+body {
+  font-family: "Battambang", "RobotoRegular", sans-serif;
+  color: #ffffff;
+  background-color: #0c0c0e; /* Matches your updated dark background */
+  line-height: 1.6;
+}
+
+/* ចលនា Fade In ពេលទំព័រ Load ចូលមក */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ដាក់ចលនា Fade In ឱ្យគ្រប់ Main Content និង Card ទាំងអស់ */
+main,
+.card,
+footer {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.nav-link {
+  font-family: "Bayon", "RobotoBold";
+  color: #ffffff;
+}
+
+/* ពេលយក Mouse ដាក់លើ គឺប្តូរតែពណ៌ (គ្មានការរីករួម ឬ scale ទេ) */
+h1:hover,
+h2:hover,
+h3:hover,
+h4:hover,
+h5:hover,
+h6:hover,
+.nav-link:hover {
+  color: #0dcaf0;
+  transition: 0.3s ease;
+}
+
+.navbar {
+  background-color: #333333;
+}
+
+.navbar .navbar-brand {
+  color: #ffffff !important;
+}
+
+.navbar .nav-link {
+  color: #ffffff;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: #0dcaf0;
+}
+
+/* រចនាប័ទ្ម Logo និងចលនាភ្លឺរលោង */
+.navbar-brand {
+  display: inline-block;
+  position: relative;
+  font-weight: bold;
+  background: linear-gradient(90deg, #ffffff 0%, #0dcaf0 50%, #ffffff 100%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation:
+    shineLogo 4s linear infinite,
+    logoEntrance 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: all 0.4s ease;
+}
+
+@keyframes shineLogo {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes logoEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.navbar-brand:hover {
+  text-shadow: 0 0 15px rgba(13, 202, 240, 0.8);
+}
+
+/* កំណត់រូបភាព Logo ឱ្យមូល និងមានទំហំសមរម្យ */
+.navbar-brand img {
+  height: 40px !important;
+  width: 40px !important;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #0dcaf0;
+  box-shadow: 0 0 10px rgba(13, 202, 240, 0.5);
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+/* ចលនាពេលយក Mouse ដាក់លើ Logo Image */
+.navbar-brand:hover img {
+  transform: scale(1.08) rotate(5deg);
+  box-shadow: 0 0 18px rgba(13, 202, 240, 0.8);
+}
+
+/* បន្ថែមចលនាស្អាតៗពេលເອົາ Mouse ដាក់លើ Card ផ្សេងៗ (មិនរីកធំខ្លាំងពេក) */
+.card {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  background-color: #18181c;
+  border: 1px solid #28282c;
+  color: #ffffff;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(13, 202, 240, 0.15);
+}
+
+/* ==========================================
+  ✨ ស្ទីលប៊ូតុង Back ឱ្យស្មើគែម និងស្អាតទន់ភ្លន់
+   ========================================== */
+.back-btn-modern {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-size: 14px;
+  font-family: "Battambang", sans-serif;
+  color: #0dcaf0;
+  background-color: rgba(13, 202, 240, 0.08);
+  border: 1px solid rgba(13, 202, 240, 0.3);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.back-btn-modern:hover {
+  background-color: #0dcaf0;
+  color: #18181c !important;
+  transform: translateX(
+    -3px
+  ); /* ពេលយក mouse ដាក់លើ វាខិតទៅឆ្វេងបន្តិចយ៉ាងស្រស់ស្អាត */
+  box-shadow: 0 4px 15px rgba(13, 202, 240, 0.4);
+  border-color: #0dcaf0;
+}
+
+.cate_img img {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ==========================================
+   ✨ ២. ចលនាភ្លឺរលោងដកដង្ហើម (Pulse Glow Animation - សម្រាប់ប៊ូតុងទិញឱ្យមានភាពទាក់ទាញ)
+   ========================================== */
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(13, 202, 240, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(13, 202, 240, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(13, 202, 240, 0);
+  }
+}
+
+.btn-danger {
+  animation: pulseGlow 2.5s infinite;
+}
+
+/* ==========================================
+   ✨ 6. Navbar & Menu Link Animations (ចលនាសម្រាប់ Navbar និង ម៉ឺនុយ)
+   ========================================== */
+
+/* បន្ថែមគូទពន្លឺខាងក្រោម Nav-link ពេលយក Mouse ដាក់លើ */
+.navbar-nav .nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #0dcaf0;
+  transition: width 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after {
+  width: 100%;
+}
+
+/* ចលនាពង្រីក Logo បន្តិចពេលយក Mouse ထိ */
+.navbar-brand {
+  transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.03);
+}
+
+/* ដាក់ពន្លឺ Shadow ឱ្យ Navbar ពេល Scroll ចុះក្រោម (បន្ថែមប្រសិនបើចង់ឱ្យវាស្អាតពេលติด sticky) */
+.navbar {
+  transition:
+    background-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.navbar:hover {
+  box-shadow: 0 4px 20px rgba(13, 202, 240, 0.15);
+}
+
+/* ==========================================
+   ✨ ឡូហ្គោរាងមូល និងចលនាពន្លឺ Neon Glow សម្រាប់ Lh_computer[cite: 1]
+   ========================================== */
+
+@keyframes neonGlowPulse {
+  0% {
+    box-shadow:
+      0 0 5px rgba(13, 202, 240, 0.4),
+      0 0 10px rgba(13, 202, 240, 0.2);
+    border-color: #0dcaf0;
+  }
+  50% {
+    box-shadow:
+      0 0 20px rgba(13, 202, 240, 0.8),
+      0 0 35px rgba(13, 202, 240, 0.5);
+    border-color: #ffffff;
+  }
+  100% {
+    box-shadow:
+      0 0 5px rgba(13, 202, 240, 0.4),
+      0 0 10px rgba(13, 202, 240, 0.2);
+    border-color: #0dcaf0;
+  }
+}
+
+@keyframes subtleRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* អនុវត្តចលនាទៅលើរូបភាពឡូហ្គោរាងមូល */
+.navbar-brand img {
+  height: 40px !important;
+  width: 40px !important;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #0dcaf0;
+  animation: neonGlowPulse 3s infinite ease-in-out;
+  transition: transform 0.4s ease;
+}
+
+/* ពេលយក Mouse ដាក់លើឡូហ្គោ */
+.navbar-brand:hover img {
+  transform: scale(1.1) rotate(10deg);
+  box-shadow: 0 0 25px rgba(13, 202, 240, 1);
+}
+
+
