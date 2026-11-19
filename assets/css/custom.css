@@ -76,10 +76,15 @@ footer {
 }
 
 /* ==========================================
-   4. Navbar, Logo & Menu Animations
+4. Navbar, Logo & Menu Animations
    ========================================== */
 .navbar {
-  background-color: #333333;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  background-color: rgba(33, 33, 36, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   transition:
     background-color 0.4s ease,
     box-shadow 0.4s ease;
@@ -89,13 +94,121 @@ footer {
   box-shadow: 0 4px 20px rgba(13, 202, 240, 0.15);
 }
 
-.navbar .navbar-brand {
-  color: #ffffff !important;
+/* Logo Text Shine & Entrance */
+@keyframes shineLogo {
+  to {
+    background-position: 200% center;
+  }
 }
 
+@keyframes logoEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(-16px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.navbar .navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  font-weight: 700;
+  text-decoration: none;
+  animation: logoEntrance 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: transform 0.3s ease;
+}
+
+.navbar .navbar-brand span {
+  background: linear-gradient(90deg, #ffffff 0%, #0dcaf0 50%, #ffffff 100%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shineLogo 4s linear infinite;
+}
+
+.navbar .navbar-brand:hover {
+  transform: scale(1.03);
+  filter: drop-shadow(0 0 10px rgba(13, 202, 240, 0.5));
+}
+
+/* Round Logo Image with Neon Glow */
+@keyframes neonGlowPulse {
+  0% {
+    box-shadow:
+      0 0 5px rgba(13, 202, 240, 0.4),
+      0 0 10px rgba(13, 202, 240, 0.2);
+    border-color: #0dcaf0;
+  }
+  50% {
+    box-shadow:
+      0 0 18px rgba(13, 202, 240, 0.8),
+      0 0 30px rgba(13, 202, 240, 0.45);
+    border-color: #ffffff;
+  }
+  100% {
+    box-shadow:
+      0 0 5px rgba(13, 202, 240, 0.4),
+      0 0 10px rgba(13, 202, 240, 0.2);
+    border-color: #0dcaf0;
+  }
+}
+
+.navbar-brand img {
+  height: 40px !important;
+  width: 40px !important;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #0dcaf0;
+  animation: neonGlowPulse 3s infinite ease-in-out;
+  transition: transform 0.4s ease;
+}
+
+.navbar-brand:hover img {
+  transform: scale(1.08) rotate(8deg);
+}
+
+/* Mobile Toggler Button */
+.navbar .navbar-toggler {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(13, 202, 240, 0.35);
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.navbar .navbar-toggler:hover {
+  background-color: rgba(13, 202, 240, 0.14);
+  border-color: #0dcaf0;
+}
+
+.navbar .navbar-toggler-icon {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* Nav Links & Underline */
 .navbar .nav-link {
   color: #ffffff;
   position: relative;
+  padding: 0.5rem 0.25rem;
+  text-decoration: none;
   transition: color 0.3s ease;
 }
 
@@ -118,6 +231,92 @@ footer {
 .navbar-nav .nav-link:hover::after,
 .navbar-nav .nav-link.active::after {
   width: 100%;
+}
+
+/* ==========================================
+5. Mobile Drawer Dialog & Desktop Nav
+   ========================================== */
+dialog.drawer.drawer-end {
+  border: none;
+  background-color: #18181c;
+  color: #ffffff;
+}
+
+dialog.drawer.drawer-end[open] {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: auto;
+  margin: 0;
+  height: 100vh;
+  max-height: 100vh;
+  width: 270px;
+  max-width: 85vw;
+  border-left: 1px solid #28282c;
+  padding: 1.25rem;
+  z-index: 1055;
+  display: flex;
+  flex-direction: column;
+}
+
+dialog.drawer::backdrop {
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(2px);
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.85rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #28282c;
+}
+
+.drawer-header .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+  opacity: 0.8;
+}
+
+.drawer-header .btn-close:hover {
+  opacity: 1;
+}
+
+.navbar-nav {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Show menu inline on desktop (992px and up) */
+@media (min-width: 992px) {
+  .navbar .navbar-toggler,
+  dialog.drawer.drawer-end .drawer-header,
+  dialog.drawer.drawer-end::backdrop {
+    display: none;
+  }
+
+  dialog.drawer.drawer-end {
+    display: flex;
+    position: static;
+    height: auto;
+    max-height: none;
+    width: auto;
+    margin: 0 0 0 1.5rem;
+    padding: 0;
+    background: transparent;
+    border: none;
+    overflow: visible;
+  }
+
+  .navbar-nav {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.25rem;
+  }
 }
 
 /* Logo Text Shine & Entrance */
