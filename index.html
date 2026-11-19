@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="assets/css/custom.css">
 </head>
 
-<body>
+<body class="bg-dark text-white">
   <header>
     <nav class="navbar lg:navbar-expand bg-1 fg-2">
       <div class="container-fluid">
@@ -65,14 +65,14 @@
   <!-- Carousel Banner -->
   <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner rounded-5">
-      <div class="carousel-item active" data-bs-interval="2000">
+      <div class="carousel-item active">
         <img src="assets/images/banners/b1.jpg" class="d-block w-100" alt="Banner 1">
       </div>
-      <div class="carousel-item" data-bs-interval="4000">
-        <img src="assets/images/banners/b2.jpg" class="d-block w-100" alt="Banner 2">
+      <div class="carousel-item">
+        <img src="assets/images/banners/b2.jpg" loading="lazy" class="d-block w-100" alt="Banner 2">
       </div>
-      <div class="carousel-item" data-bs-interval="6000">
-        <img src="assets/images/banners/b3.jpg" class="d-block w-100" alt="Banner 3">
+      <div class="carousel-item">
+        <img src="assets/images/banners/b3.jpg" loading="lazy" class="d-block w-100" alt="Banner 3">
       </div>
     </div>
 
@@ -98,7 +98,7 @@
     <div class="row g-3">
       <div class="col-6 col-md-4 col-lg-3 col-xl-2">
         <div class="card cate_img h-100 bg-dark text-white border-secondary">
-          <img src="assets/images/categories/1.jpg" class="card-img-top w-100" alt="កុំព្យូទ័រ"
+          <img src="assets/images/categories/1.jpg" loading="lazy" class="card-img-top w-100" alt="កុំព្យូទ័រ"
             style="height: 150px; object-fit: cover;">
           <div class="card-body">
             <h5 class="card-title fs-6">Keyboard</h5>
@@ -108,7 +108,7 @@
 
       <div class="col-6 col-md-4 col-lg-3 col-xl-2">
         <div class="card cate_img h-100 bg-dark text-white border-secondary">
-          <img src="assets/images/categories/2.jpg" class="card-img-top w-100" alt="កុំព្យូទ័រលើតុ"
+          <img src="assets/images/categories/2.jpg" loading="lazy" class="card-img-top w-100" alt="កុំព្យូទ័រលើតុ"
             style="height: 150px; object-fit: cover;">
           <div class="card-body">
             <h5 class="card-title fs-6">Keyboard</h5>
@@ -118,7 +118,7 @@
 
       <div class="col-6 col-md-4 col-lg-3 col-xl-2">
         <div class="card cate_img h-100 bg-dark text-white border-secondary">
-          <img src="assets/images/categories/3.jpg" class="card-img-top w-100" alt="អេក្រង់កុំព្យូទ័រ"
+          <img src="assets/images/categories/5.jpg" loading="lazy" class="card-img-top w-100" alt="អេក្រង់កុំព្យូទ័រ"
             style="height: 150px; object-fit: cover;">
           <div class="card-body">
             <h5 class="card-title fs-6">Keyboard</h5>
@@ -128,7 +128,7 @@
 
       <div class="col-6 col-md-4 col-lg-3 col-xl-2">
         <div class="card cate_img h-100 bg-dark text-white border-secondary">
-          <img src="assets/images/categories/4.jpg" class="card-img-top w-100" alt="អេក្រង់កុំព្យូទ័រ"
+          <img src="assets/images/categories/4.jpg" loading="lazy" class="card-img-top w-100" alt="អេក្រង់កុំព្យូទ័រ"
             style="height: 150px; object-fit: cover;">
           <div class="card-body">
             <h5 class="card-title fs-6">Keyboard</h5>
@@ -138,7 +138,7 @@
 
       <div class="col-6 col-md-4 col-lg-3 col-xl-2">
         <div class="card cate_img h-100 bg-dark text-white border-secondary">
-          <img src="assets/images/categories/6.jpg" class="card-img-top w-100" alt="អេក្រង់កុំព្យូទ័រ"
+          <img src="assets/images/categories/6.jpg" loading="lazy" class="card-img-top w-100" alt="អេក្រង់កុំព្យូទ័រ"
             style="height: 150px; object-fit: cover;">
           <div class="card-body">
             <h5 class="card-title fs-6">Keyboard</h5>
@@ -148,7 +148,7 @@
 
       <div class="col-6 col-md-4 col-lg-3 col-xl-2">
         <div class="card cate_img h-100 bg-dark text-white border-secondary">
-          <img src="assets/images/categories/7.jpg" class="card-img-top w-100" alt="Computer"
+          <img src="assets/images/categories/7.jpg" loading="lazy" class="card-img-top w-100" alt="Computer"
             style="height: 150px; object-fit: cover;">
           <div class="card-body">
             <h5 class="card-title fs-6">Keyboard</h5>
@@ -193,7 +193,6 @@
     </div>
   </footer>
 
-  <!-- Link ទៅកាន់ Bootstrap JS ក្នុង Folder ផ្ទាល់ខ្លួនរបស់អ្នក -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const cart = JSON.parse(localStorage.getItem('lh_cart')) || [];
@@ -202,9 +201,55 @@
       if (bagCountElem) {
         bagCountElem.innerText = totalCount;
       }
+
+      const carouselEl = document.getElementById('carouselExampleInterval');
+      if (!carouselEl) return;
+
+      const items = carouselEl.querySelectorAll('.carousel-item');
+      const indicators = carouselEl.querySelectorAll('.carousel-indicators button');
+      const toggleBtn = document.getElementById('carouselToggleBtn');
+      if (!items.length) return;
+
+      let currentIndex = 0;
+      let isPaused = false;
+
+      function showSlide(index) {
+        currentIndex = (index + items.length) % items.length;
+        items.forEach((item, i) => {
+          const isActive = i === currentIndex;
+          item.classList.toggle('active', isActive);
+          item.style.display = isActive ? 'block' : 'none';
+        });
+        indicators.forEach((btn, i) => {
+          const isActive = i === currentIndex;
+          btn.classList.toggle('active', isActive);
+          btn.setAttribute('aria-current', isActive ? 'true' : 'false');
+        });
+      }
+
+      showSlide(0);
+
+      indicators.forEach((btn, idx) => {
+        btn.addEventListener('click', function () {
+          showSlide(idx);
+        });
+      });
+
+      setInterval(function () {
+        if (!isPaused) {
+          showSlide(currentIndex + 1);
+        }
+      }, 3000);
+
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', function () {
+          isPaused = !isPaused;
+          toggleBtn.textContent = isPaused ? 'Play' : 'Pause';
+        });
+      }
     });
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="assets/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 

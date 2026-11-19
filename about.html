@@ -10,25 +10,22 @@
     <link rel="stylesheet" href="assets/css/custom.css">
 </head>
 
-<body>
+<body class="bg-dark text-white">
     <header>
         <nav class="navbar lg:navbar-expand bg-1 fg-2">
             <div class="container-fluid">
-                <!-- Logo និងឈ្មោះហាង -->
                 <a class="navbar-brand d-flex align-items-center" href="index.html">
                     <img src="assets/images/logos/Gemini_Generated_Image_u8m9ju8m9ju8m9ju.jpg"
                         style="height: 40px; width: auto;" class="me-2 rounded-circle" alt="Lh_computer Logo">
                     <span>Lh_computer</span>
                 </a>
 
-                <!-- ក្រុមខាងស្តាំ៖ Bag នៅជាប់ប៊ូតុងត្រេបី -->
                 <div class="d-flex align-items-center gap-2 ms-auto">
                     <a href="bag.html" class="text-decoration-none text-danger fw-bold d-flex align-items-center gap-1">
                         <span>Bag</span>
                         <span id="bagCount" class="badge bg-danger rounded-circle px-2">0</span>
                     </a>
 
-                    <!-- ប៊ូតុង Drawer Toggler សម្រាប់ទូរសព្ទ -->
                     <button class="btn-icon navbar-toggler" type="button" data-bs-toggle="drawer"
                         data-bs-target="#navbarNavMenu" aria-controls="navbarNavMenu" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -36,7 +33,6 @@
                     </button>
                 </div>
 
-                <!-- Drawer Menu -->
                 <dialog class="drawer drawer-end" tabindex="-1" id="navbarNavMenu" aria-labelledby="navbarNavMenuLabel">
                     <div class="drawer-header">
                         <h5 class="drawer-title" id="navbarNavMenuLabel">Menu</h5>
@@ -63,7 +59,6 @@
         </nav>
     </header>
 
-    <!-- About Section -->
     <main class="container my-5">
         <div class="mb-3">
             <a href="product.html" class="back-btn-modern text-decoration-none">
@@ -88,12 +83,11 @@
 
             <div class="col-md-6">
                 <img src="assets/images/logos/Gaming Gadgets w_ Cool Sci-fi Keyboard, Mouse, Speakers _ GravaStar.jpg"
-                    class="img-fluid rounded-4 shadow border border-secondary" alt="About Image">
+                    loading="lazy" class="img-fluid rounded-4 shadow border border-secondary" alt="About Image">
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="custom-footer py-5 bg-black border-top border-secondary mt-5">
         <div class="container-fluid px-4 px-md-5">
             <div class="row g-4 pb-5 justify-content-between">
@@ -128,8 +122,17 @@
         </div>
     </footer>
 
-    <!-- Script -->
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const cart = JSON.parse(localStorage.getItem('lh_cart')) || [];
+            const totalCount = cart.reduce((sum, item) => sum + (parseInt(item.qty, 10) || 1), 0);
+            const bagCountElem = document.getElementById('bagCount');
+            if (bagCountElem) {
+                bagCountElem.innerText = totalCount;
+            }
+        });
+    </script>
+    <script type="module" src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 

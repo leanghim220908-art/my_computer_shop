@@ -11,25 +11,21 @@
 </head>
 
 <body class="bg-dark text-white">
-    <!-- Header & Navbar -->
     <header>
         <nav class="navbar lg:navbar-expand bg-1 fg-2">
             <div class="container-fluid">
-                <!-- Logo និងឈ្មោះហាង -->
                 <a class="navbar-brand d-flex align-items-center" href="index.html">
                     <img src="assets/images/logos/Gemini_Generated_Image_u8m9ju8m9ju8m9ju.jpg"
                         style="height: 40px; width: auto;" class="me-2 rounded-circle" alt="Lh_computer Logo">
                     <span>Lh_computer</span>
                 </a>
 
-                <!-- ក្រុមខាងស្តាំ៖ Bag នៅជាប់ប៊ូតុងត្រេបី -->
                 <div class="d-flex align-items-center gap-2 ms-auto">
                     <a href="bag.html" class="text-decoration-none text-danger fw-bold d-flex align-items-center gap-1">
                         <span>Bag</span>
                         <span id="bagCount" class="badge bg-danger rounded-circle px-2">0</span>
                     </a>
 
-                    <!-- ប៊ូតុង Drawer Toggler សម្រាប់ទូរសព្ទ -->
                     <button class="btn-icon navbar-toggler" type="button" data-bs-toggle="drawer"
                         data-bs-target="#navbarNavMenu" aria-controls="navbarNavMenu" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -37,7 +33,6 @@
                     </button>
                 </div>
 
-                <!-- Drawer Menu -->
                 <dialog class="drawer drawer-end" tabindex="-1" id="navbarNavMenu" aria-labelledby="navbarNavMenuLabel">
                     <div class="drawer-header">
                         <h5 class="drawer-title" id="navbarNavMenuLabel">Menu</h5>
@@ -64,7 +59,6 @@
         </nav>
     </header>
 
-    <!-- Main Content: 6 Products -->
     <main class="container my-4">
         <div class="mb-3">
             <a href="index.html" class="back-btn-modern text-decoration-none">
@@ -111,7 +105,7 @@
             <!-- ផលិតផលទី ៣ -->
             <div class="col-6 col-md-4 col-lg-3 col-xl-2">
                 <div class="card cate_img bg-dark text-white border-secondary h-100">
-                    <img src="assets/images/categories/3.jpg" class="card-img-top w-100" alt="ផលិតផលទី ៣"
+                    <img src="assets/images/categories/5.jpg" class="card-img-top w-100" alt="ផលិតផលទី ៣"
                         style="height: 140px; object-fit: cover;">
                     <div class="card-body d-flex flex-column justify-content-between">
                         <div>
@@ -119,7 +113,7 @@
                             <p class="text-danger fw-bold small mb-2">តម្លៃ៖ $150.00</p>
                         </div>
                         <button type="button" class="btn btn-danger btn-sm w-100 mt-2"
-                            onclick="addToCart('ផលិតផលទី ៣', 150.00, 'assets/images/categories/3.jpg')">Add to
+                            onclick="addToCart('ផលិតផលទី ៣', 150.00, 'assets/images/categories/5.jpg')">Add to
                             bag</button>
                     </div>
                 </div>
@@ -128,7 +122,7 @@
             <!-- ផលិតផលទី ៤ -->
             <div class="col-6 col-md-4 col-lg-3 col-xl-2">
                 <div class="card cate_img bg-dark text-white border-secondary h-100">
-                    <img src="assets/images/categories/4.jpg" class="card-img-top w-100" alt="ផលិតផលទី ៤"
+                    <img src="assets/images/categories/4.jpg" loading="lazy" class="card-img-top w-100" alt="ផលិតផលទី ៤"
                         style="height: 140px; object-fit: cover;">
                     <div class="card-body d-flex flex-column justify-content-between">
                         <div>
@@ -145,7 +139,7 @@
             <!-- ផលិតផលទី ៥ -->
             <div class="col-6 col-md-4 col-lg-3 col-xl-2">
                 <div class="card cate_img bg-dark text-white border-secondary h-100">
-                    <img src="assets/images/categories/6.jpg" class="card-img-top w-100" alt="ផលិតផលទី ៥"
+                    <img src="assets/images/categories/6.jpg" loading="lazy" class="card-img-top w-100" alt="ផលិតផលទី ៥"
                         style="height: 140px; object-fit: cover;">
                     <div class="card-body d-flex flex-column justify-content-between">
                         <div>
@@ -162,7 +156,7 @@
             <!-- ផលិតផលទី ៦ -->
             <div class="col-6 col-md-4 col-lg-3 col-xl-2">
                 <div class="card cate_img bg-dark text-white border-secondary h-100">
-                    <img src="assets/images/categories/7.jpg" class="card-img-top w-100" alt="ផលិតផលទី ៦"
+                    <img src="assets/images/categories/7.jpg" loading="lazy" class="card-img-top w-100" alt="ផលិតផលទី ៦"
                         style="height: 140px; object-fit: cover;">
                     <div class="card-body d-flex flex-column justify-content-between">
                         <div>
@@ -179,7 +173,6 @@
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="custom-footer py-5 bg-black border-top border-secondary mt-5">
         <div class="container-fluid px-4 px-md-5">
             <div class="row g-4 pb-5 justify-content-between">
@@ -214,7 +207,6 @@
         </div>
     </footer>
 
-    <!-- JavaScript សម្រាប់គ្រប់គ្រងការ Add to Bag -->
     <script>
         function updateBagCount() {
             let cart = JSON.parse(localStorage.getItem('lh_cart')) || [];
@@ -243,8 +235,7 @@
         document.addEventListener("DOMContentLoaded", updateBagCount);
     </script>
 
-    <!-- Bootstrap JS & Main JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 
