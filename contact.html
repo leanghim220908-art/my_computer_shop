@@ -49,7 +49,7 @@
                                 <a class="nav-link" href="index.html">ទំព័រដើម</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="product.html">ផលិតផល</a>
+                                <a class="nav-link" href="product.html">ផលិតផល</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="about.html">អំពីពួកយើង</a>
@@ -66,7 +66,6 @@
 
     <!-- Main Content: Contact Us -->
     <main class="container my-4">
-        <!-- ប៊ូតុង Back ថយក្រោយទៅកាន់ទំព័រ About (តាមលំដាប់លំដោយដំណាក់កាល) -->
         <div class="mb-3">
             <a href="about.html" class="back-btn-modern">
                 <span>← ថយក្រោយ</span>
@@ -81,7 +80,7 @@
 
                 <ul class="list-unstyled mb-4">
                     <li class="mb-3">
-                        <a href="https://t.me/leanghim_computer" target="_blank"
+                        <a href="https://t.me/leanghim_computer" target="_blank" rel="noopener noreferrer"
                             class="text-decoration-none text-muted d-flex align-items-center gap-2">
                             <span>📞 លេខទូរសព្ទ / Telegram : 015238209</span>
                         </a>
@@ -117,17 +116,15 @@
                     <h6 class="fw-bold mb-3 text-white">INFORMATION</h6>
                     <ul class="information list-unstyled">
                         <li class="mb-2"><a href="about.html" class="text-decoration-none text-muted">About</a></li>
-                        <li class="mb-2"><a href="contact.html" class="text-decoration-none text-muted">Contact</a>
-                        </li>
-                        <li class="mb-2"><a href="product.html" class="text-decoration-none text-muted">Product</a>
-                        </li>
+                        <li class="mb-2"><a href="contact.html" class="text-decoration-none text-muted">Contact</a></li>
+                        <li class="mb-2"><a href="product.html" class="text-decoration-none text-muted">Product</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md-4 col-lg-3">
                     <h6 class="fw-bold mb-3 text-white">CONTACT US</h6>
                     <ul class="list-unstyled small mb-3">
                         <li class="mb-2">
-                            <a href="https://t.me/leanghim_computer" target="_blank"
+                            <a href="https://t.me/leanghim_computer" target="_blank" rel="noopener noreferrer"
                                 class="text-decoration-none text-muted d-flex align-items-center gap-2">
                                 <span>📞 Telegram : 015238209</span>
                             </a>
@@ -150,7 +147,7 @@
     <script>
         function updateBagCount() {
             let cart = JSON.parse(localStorage.getItem('lh_cart')) || [];
-            let totalCount = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+            let totalCount = cart.reduce((sum, item) => sum + (parseInt(item.qty, 10) || 1), 0);
             const bagCountElem = document.getElementById('bagCount');
             if (bagCountElem) {
                 bagCountElem.innerText = totalCount;
@@ -159,25 +156,51 @@
 
         document.addEventListener("DOMContentLoaded", updateBagCount);
 
+        function copyTextFallback(text) {
+            try {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(text).catch(() => { });
+                }
+            } catch (e) {
+                // Ignore clipboard errors on restricted contexts
+            }
+        }
+
         function sendContactToTelegram(event) {
             event.preventDefault();
 
-            let name = document.getElementById('name').value.trim();
-            let messageContent = document.getElementById('message').value.trim();
+            const name = document.getElementById('name').value.trim();
+            const messageContent = document.getElementById('message').value.trim();
 
             if (!name || !messageContent) {
                 alert("សូមបំពេញព័ត៌មានឱ្យបានគ្រប់គ្រាន់!");
                 return;
             }
 
-            let text = "📩 *សារទំនាក់ទំនងថ្មីពីវេបសាយ*%0A%0A";
-            text += `👤 ឈ្មោះ: ${name}%0A`;
-            text += `💬 សារ: ${messageContent}%0A`;
+            const plainText =
+                `📩 សារទំនាក់ទំនងថ្មីពីវេបសាយ\n` +
+                `👤 ឈ្មោះ: ${name}\n` +
+                `💬 សារ: ${messageContent}`;
 
-            let telegramUsername = "leanghim_computer";
-            let telegramUrl = `https://t.me/${telegramUsername}?text=${text}`;
+            const telegramUsername = "leanghim_computer";
+            const encodedText = encodeURIComponent(plainText);
+            const httpsUrl = `https://t.me/${telegramUsername}?text=${encodedText}`;
+            const appDeepLink = `tg://resolve?domain=${telegramUsername}&text=${encodedText}`;
 
-            window.open(telegramUrl, '_blank');
+            copyTextFallback(plainText);
+
+            const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+            if (isMobile) {
+                // ព្យាយាមបើក Telegram App ដោយផ្ទាល់ ហើយបើមិនបើក នឹងធ្លាក់មក https://t.me/...
+                const fallbackTimer = setTimeout(() => {
+                    window.location.href = httpsUrl;
+                }, 900);
+
+                window.addEventListener("pagehide", () => clearTimeout(fallbackTimer), { once: true });
+                window.location.href = appDeepLink;
+            } else {
+                window.open(httpsUrl, '_blank', 'noopener,noreferrer');
+            }
         }
     </script>
 
