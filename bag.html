@@ -14,12 +14,7 @@
             color: #ffffff;
         }
 
-        .bag-item {
-            background-color: #18181c;
-            border: 1px solid #28282c;
-            border-radius: 8px;
-        }
-
+        .bag-item,
         .summary-box {
             background-color: #18181c;
             border: 1px solid #28282c;
@@ -38,7 +33,7 @@
                 <a class="navbar-brand d-flex align-items-center" href="index.html">
                     <img src="assets/images/logos/Gemini_Generated_Image_u8m9ju8m9ju8m9ju.jpg"
                         style="height: 40px; width: 40px; object-fit: cover;"
-                        class="rounded-circle me-2 border border-info shadow-sm">
+                        class="rounded-circle me-2 border border-info shadow-sm" alt="Lh_computer Logo">
                     <span>Lh_computer</span>
                 </a>
 
@@ -66,50 +61,50 @@
 
     <!-- Main Content -->
     <main class="container my-5">
-        <!-- ប៊ូតុង Back ថយក្រោយតាមដំណាក់កាលពិតប្រាកដ -->
-        <div class="container my-3">
-            <button onclick="history.back()"
+        <div class="mb-3">
+            <button type="button" onclick="history.back()"
                 class="btn btn-outline-info btn-sm d-inline-flex align-items-center gap-2 px-3 py-2 fw-bold rounded-pill back-btn"
                 style="border: 1px solid #0dcaf0;">
                 <span>← ថយក្រោយ (Back)</span>
             </button>
+        </div>
 
-            <h2 class="fw-bold mb-4">Your Bag</h2>
+        <h2 class="fw-bold mb-4">Your Bag</h2>
 
-            <!-- ពេលមានទំនិញក្នុង Bag -->
-            <div id="bagContent" class="row g-4">
-                <div class="col-lg-8">
-                    <div id="cartItemsList" class="d-flex flex-column gap-3">
-                        <!-- ទំនិញនឹងត្រូវទាញចេញពី localStorage មកបង្ហាញទីនេះ -->
-                    </div>
-                </div>
-
-                <!-- Summary Box -->
-                <div class="col-lg-4">
-                    <div class="summary-box p-4">
-                        <h4 class="fw-bold mb-3">Order Summary</h4>
-                        <div class="d-flex justify-content-between mb-3 text-secondary">
-                            <span>Subtotal</span>
-                            <span id="subtotalPrice" class="text-white fw-bold">$0.00</span>
-                        </div>
-                        <!-- ដកជួរ Shipping ចេញ -->
-                        <hr class="border-secondary">
-                        <div class="d-flex justify-content-between mb-4 fs-5 fw-bold">
-                            <span>Total</span>
-                            <span id="totalPrice" class="text-danger">$0.00</span>
-                        </div>
-                        <button type="button" class="btn btn-danger w-100 py-2 fw-bold" onclick="checkout()">Continue to
-                            checkout</button>
-                    </div>
+        <!-- ពេលមានទំនិញក្នុង Bag -->
+        <div id="bagContent" class="row g-4">
+            <div class="col-lg-8">
+                <div id="cartItemsList" class="d-flex flex-column gap-3">
+                    <!-- ទំនិញនឹងត្រូវទាញចេញពី localStorage មកបង្ហាញទីនេះ -->
                 </div>
             </div>
 
-            <!-- ពេល Bag ទទេ -->
-            <div id="emptyBag" class="text-center py-5 d-none">
-                <h3 class="text-secondary mb-3">Your bag is empty</h3>
-                <p class="text-muted mb-4">You haven't added any products to your bag yet.</p>
-                <a href="product.html" class="btn btn-danger px-4 py-2">Browse products</a>
+            <!-- Summary Box -->
+            <div class="col-lg-4">
+                <div class="summary-box p-4">
+                    <h4 class="fw-bold mb-3">Order Summary</h4>
+                    <div class="d-flex justify-content-between mb-3 text-secondary">
+                        <span>Subtotal</span>
+                        <span id="subtotalPrice" class="text-white fw-bold">$0.00</span>
+                    </div>
+                    <hr class="border-secondary">
+                    <div class="d-flex justify-content-between mb-4 fs-5 fw-bold">
+                        <span>Total</span>
+                        <span id="totalPrice" class="text-danger">$0.00</span>
+                    </div>
+                    <button type="button" class="btn btn-danger w-100 py-2 fw-bold" onclick="checkout()">
+                        Continue to checkout
+                    </button>
+                </div>
             </div>
+        </div>
+
+        <!-- ពេល Bag ទទេ -->
+        <div id="emptyBag" class="text-center py-5 d-none">
+            <h3 class="text-secondary mb-3">Your bag is empty</h3>
+            <p class="text-muted mb-4">You haven't added any products to your bag yet.</p>
+            <a href="product.html" class="btn btn-danger px-4 py-2">Browse products</a>
+        </div>
     </main>
 
     <!-- Modal សម្រាប់បង្ហាញ QR Code ទូទាត់ប្រាក់ -->
@@ -125,20 +120,18 @@
                     <p class="text-secondary mb-2">Total Amount to Pay</p>
                     <h3 id="qrTotalAmount" class="text-danger fw-bold mb-4">$0.00</h3>
 
-                    <!-- រូបភាព QR Code -->
                     <div class="bg-white p-3 d-inline-block rounded mb-3">
                         <img src="assets/images/qr-code.png" alt="Scan QR"
                             style="width: 200px; height: 200px; object-fit: contain;">
                     </div>
 
-                    <p class="text-muted small mb-2">សូមពិនិត្យទឹកប្រាក់មុនពេលបញ្ជូន និងផ្ញើ Slip មកកាន់ Telegram
-                        ហាងយើងខ្ញុំ!</p>
+                    <p class="text-muted small mb-3">
+                        សូមពិនិត្យទឹកប្រាក់មុនពេលបញ្ជូន និងផ្ញើ Slip មកកាន់ Telegram ហាងយើងខ្ញុំ!
+                    </p>
 
-                    <!-- ប៊ូតុងតភ្ជាប់ទៅ Telegram ហាង -->
-                    <a href="#" id="telegramBtn" target="_blank" class="btn btn-info btn-sm w-100 fw-bold mb-2"
-                        onclick="sendToTelegram()">
+                    <button type="button" class="btn btn-info btn-sm w-100 fw-bold mb-2" onclick="sendToTelegram()">
                         💬 ផ្ញើ Slip បញ្ជាក់ការទូទាត់តាម Telegram
-                    </a>
+                    </button>
                 </div>
                 <div class="modal-footer border-top border-secondary">
                     <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal"
@@ -183,16 +176,21 @@
         </div>
     </footer>
 
-    <!-- JavaScript សម្រាប់គ្រប់គ្រងកន្ត្រក និងផ្ញើសារចូល Telegram -->
     <script>
+        const FALLBACK_IMAGE = "assets/images/logos/Gemini_Generated_Image_u8m9ju8m9ju8m9ju.jpg";
         let cart = [];
+
         try {
-            let storedCart = localStorage.getItem('lh_cart');
+            const storedCart = localStorage.getItem('lh_cart');
             if (storedCart) {
-                cart = JSON.parse(storedCart);
+                const parsed = JSON.parse(storedCart);
+                if (Array.isArray(parsed)) {
+                    cart = parsed;
+                }
             }
         } catch (e) {
             console.error("Error parsing localStorage:", e);
+            cart = [];
         }
 
         function saveAndRender() {
@@ -208,30 +206,36 @@
 
             if (!cartList) return;
 
-            cartList.innerHTML = '';
-            const totalCount = cart.reduce((sum, item) => sum + (parseInt(item.qty) || 1), 0);
+            const totalCount = cart.reduce((sum, item) => sum + (parseInt(item.qty, 10) || 1), 0);
             if (bagCount) bagCount.innerText = totalCount;
 
             if (cart.length === 0) {
                 bagContent.classList.add('d-none');
                 emptyBag.classList.remove('d-none');
+                cartList.innerHTML = '';
+                document.getElementById('subtotalPrice').innerText = '$0.00';
+                document.getElementById('totalPrice').innerText = '$0.00';
                 return;
-            } else {
-                bagContent.classList.remove('d-none');
-                emptyBag.classList.add('d-none');
             }
 
+            bagContent.classList.remove('d-none');
+            emptyBag.classList.add('d-none');
+
             let subtotal = 0;
+            let html = '';
 
             cart.forEach((item, index) => {
-                let itemPrice = parseFloat(item.price) || 0;
-                let itemQty = parseInt(item.qty) || 1;
+                const itemPrice = parseFloat(item.price) || 0;
+                const itemQty = parseInt(item.qty, 10) || 1;
+                const itemImage = item.image || FALLBACK_IMAGE;
                 subtotal += itemPrice * itemQty;
 
-                const itemHTML = `
-                    <div class="bag-item p-3 d-flex align-items-center justify-content-between gap-3 text-white">
+                html += `
+                    <div class="bag-item p-3 d-flex flex-wrap align-items-center justify-content-between gap-3 text-white">
                         <div class="d-flex align-items-center gap-3">
-                            <img src="${item.image}" alt="${item.name}" style="width: 80px; height: 80px; object-fit: contain; background: #fff; border-radius: 6px;" class="p-1">
+                            <img src="${itemImage}" alt="${item.name}"
+                                onerror="this.onerror=null; this.src='${FALLBACK_IMAGE}';"
+                                style="width: 80px; height: 80px; object-fit: cover; background: #fff; border-radius: 6px;">
                             <div>
                                 <h5 class="fs-6 fw-bold mb-1">${item.name}</h5>
                                 <p class="text-danger fw-bold mb-0">$${itemPrice.toFixed(2)}</p>
@@ -239,27 +243,26 @@
                         </div>
                         <div class="d-flex align-items-center gap-3">
                             <div class="input-group input-group-sm" style="width: 110px;">
-                                <button class="btn btn-outline-secondary text-white" onclick="updateQty(${index}, -1)">-</button>
+                                <button type="button" class="btn btn-outline-secondary text-white" onclick="updateQty(${index}, -1)">-</button>
                                 <span class="form-control text-center bg-dark text-white border-secondary d-flex align-items-center justify-content-center">${itemQty}</span>
-                                <button class="btn btn-outline-secondary text-white" onclick="updateQty(${index}, 1)">+</button>
+                                <button type="button" class="btn btn-outline-secondary text-white" onclick="updateQty(${index}, 1)">+</button>
                             </div>
                             <button type="button" class="btn btn-outline-danger btn-sm" onclick="removeItem(${index})">Remove</button>
                         </div>
                     </div>
                 `;
-                cartList.innerHTML += itemHTML;
             });
 
+            cartList.innerHTML = html;
             document.getElementById('subtotalPrice').innerText = `$${subtotal.toFixed(2)}`;
             document.getElementById('totalPrice').innerText = `$${subtotal.toFixed(2)}`;
         }
 
         function updateQty(index, change) {
-            let currentQty = parseInt(cart[index].qty) || 1;
+            if (!cart[index]) return;
+            let currentQty = parseInt(cart[index].qty, 10) || 1;
             currentQty += change;
-            if (currentQty < 1) {
-                currentQty = 1;
-            }
+            if (currentQty < 1) currentQty = 1;
             cart[index].qty = currentQty;
             saveAndRender();
         }
@@ -269,46 +272,43 @@
             saveAndRender();
         }
 
-        // បង្ហាញ QR Code Modal ពេលចុច Checkout
         function checkout() {
             if (cart.length === 0) return;
-            let subtotal = cart.reduce((sum, item) => sum + (parseFloat(item.price) * (parseInt(item.qty) || 1)), 0);
+            const subtotal = cart.reduce((sum, item) => {
+                return sum + ((parseFloat(item.price) || 0) * (parseInt(item.qty, 10) || 1));
+            }, 0);
             document.getElementById('qrTotalAmount').innerText = `$${subtotal.toFixed(2)}`;
 
-            let qrModal = new bootstrap.Modal(document.getElementById('qrModal'));
+            const qrModalEl = document.getElementById('qrModal');
+            const qrModal = bootstrap.Modal.getOrCreateInstance(qrModalEl);
             qrModal.show();
         }
 
-        // មុខងារបង្កើតសារស្វ័យប្រវត្តិ និងបើកតេលេក្រាម
         function sendToTelegram() {
             if (cart.length === 0) {
-                alert("កន្ត្រកទំនិញរបស់អ្នកទទេរ!");
+                alert("កន្ត្រកទំនិញរបស់អ្នកទទេ!");
                 return;
             }
 
             let subtotal = 0;
-            let message = "🛍️ *ការបញ្ជាទិញថ្មីពី Lh_computer*%0A%0A";
+            let message = "🛍️ *ការបញ្ជាទិញថ្មីពី Lh_computer*\n\n";
 
             cart.forEach((item, index) => {
-                let itemPrice = parseFloat(item.price) || 0;
-                let itemQty = parseInt(item.qty) || 1;
-                let itemTotal = itemPrice * itemQty;
+                const itemPrice = parseFloat(item.price) || 0;
+                const itemQty = parseInt(item.qty, 10) || 1;
+                const itemTotal = itemPrice * itemQty;
                 subtotal += itemTotal;
-
-                message += `${index + 1}. ${item.name} (ចំនួន: ${itemQty}) - $${itemTotal.toFixed(2)}%0A`;
+                message += `${index + 1}. ${item.name} (ចំនួន: ${itemQty}) - $${itemTotal.toFixed(2)}\n`;
             });
 
-            message += `%0A💰 *ទឹកប្រាក់សរុបទាំងអស់: $${subtotal.toFixed(2)}*%0A%0A`;
-            message += `📷 សូមផ្ញើរការទូទាត់ប្រាក់ទីនេះ! អរគុណច្រើន 🙏`;
+            message += `\n💰 *ទឹកប្រាក់សរុបទាំងអស់: $${subtotal.toFixed(2)}*\n\n`;
+            message += `📷 សូមផ្ញើរូប Slip ការទូទាត់ប្រាក់ទីនេះ! អរគុណច្រើន 🙏`;
 
-            // ដាក់ Telegram Username របស់អ្នកត្រង់នេះ
-            let telegramUsername = "leanghim_computer";
-
-            let telegramUrl = `https://t.me/${telegramUsername}?text=${message}`;
+            const telegramUsername = "leanghim_computer";
+            const telegramUrl = `https://t.me/${telegramUsername}?text=${encodeURIComponent(message)}`;
             window.open(telegramUrl, '_blank');
         }
 
-        // បញ្ចប់ការទូទាត់ និងសម្អាតកន្ត្រកទំនិញ
         function completePayment() {
             cart = [];
             saveAndRender();
